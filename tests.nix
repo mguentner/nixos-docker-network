@@ -11,7 +11,7 @@ in
 {
   mytest = makeTest {
     machine = { ... }: {
-      imports = [ ./module.nix ];
+      imports = [ ./default.nix ];
 
       virtualisation.cores = 4;
       virtualisation.memorySize = 1024;
