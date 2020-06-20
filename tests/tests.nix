@@ -9,9 +9,9 @@ let
   nginx_image = registry.nginx.nginx_7d0cdcc60a96;
 in
 {
-  mytest = makeTest {
+  nginx = makeTest {
     machine = { ... }: {
-      imports = [ ./default.nix ];
+      imports = [ ../default.nix ];
 
       virtualisation.cores = 4;
       virtualisation.memorySize = 1024;
