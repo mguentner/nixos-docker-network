@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 set -x
-for dir in $(ls static_registry)
+BASE=$1
+for dir in $(ls $BASE)
 do
-    [ ! -d static_registry/$dir ] && continue
+    [ ! -d $BASE/$dir ] && continue
     pushd .
     echo $dir
-    cd static_registry/$dir
+    cd $BASE/$dir
     COMMIT_HASH=$(docker build . | tail -n 1 | cut -d ' ' -f3)
     TAG=$(basename $(pwd)):$COMMIT_HASH
     docker tag $COMMIT_HASH $TAG

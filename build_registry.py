@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
+import sys
 from pathlib import Path
 
-pathlist = Path("static_registry").glob('**/*.tar.gz')
+base = sys.argv[1]
+
+pathlist = Path(base).glob('**/*.tar.gz')
 registry = {
 }
 
