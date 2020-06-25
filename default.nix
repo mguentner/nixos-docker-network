@@ -23,8 +23,12 @@ let
     requires = after;
 
     serviceConfig = {
-      ExecStart = ''
-        ${pkgs.docker}/bin/docker network create ${name}
+      ExecStart = pkgs.writeScript "docker-network-create-${name}" ''
+        #!${pkgs.runtimeShell} -e
+        set -x
+        if [[ -z "$(${pkgs.docker}/bin/docker network ls | grep ${name} | tr -d '\n')" ]]; then
+           ${pkgs.docker}/bin/docker network create ${name}
+        fi
       '';
       ExecStop = ''
         ${pkgs.docker}/bin/docker network rm ${name}
