@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 import sys
 from pathlib import Path
+from glob import glob
 
 base = sys.argv[1]
 
-pathlist = Path(base).glob('**/*.tar.gz')
+pathlist = [ Path(x) for x in glob('**/*.tar.gz', recursive=True) ]
 registry = {
 }
 
